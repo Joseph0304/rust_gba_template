@@ -1,0 +1,18 @@
+[package]
+name = "rust_gba_template"
+version = "0.1.0"
+authors = ["Joseph0304 <joseph0304.drdr@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+
+[profile.dev]
+panic = "abort"
+lto = true
+
+[profile.release]
+panic = "abort"
+lto = true
+
+[lib]
+crate-type = ["staticlib"]
