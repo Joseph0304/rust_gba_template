@@ -1,16 +1,7 @@
 #![no_std]
 #![feature(lang_items)]
 
-use core::panic::PanicInfo;
-
-#[lang = "eh_personality"]
-pub extern "C" fn rust_eh_personality() {}
-
-#[no_mangle]
-#[panic_handler]
-fn panic(_panic: &PanicInfo<'_>) -> ! {
-    loop {}
-}
+mod base;
 
 #[no_mangle]
 pub fn main() -> ! {
