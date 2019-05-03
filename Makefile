@@ -11,7 +11,7 @@ TARGET     := $(notdir $(CURDIR))
 TARGET_DIR := $(CURDIR)/target/gba
 GBALIB_DIR := $(DEVKITARM)/arm-none-eabi/lib
 
-.PHONY: build clean
+.PHONY: usage build build-debug clean
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -19,8 +19,19 @@ GBALIB_DIR := $(DEVKITARM)/arm-none-eabi/lib
 ARCH    :=      -mthumb -mthumb-interwork
 LDFLAGS =       -g $(ARCH)
 
+usage:
+	@echo "make build"
+	@echo "make build-debug"
+	@echo "make clean"
+
 build:
 	@$(CARGO) build --release
+	@$(LD) $(LDFLAGS) -specs=$(GBALIB_DIR)/gba.specs $(TARGET_DIR)/release/lib$(TARGET).a -o $(TARGET).elf
+	@$(CARGO) objcopy -- -O binary $(TARGET).elf $(TARGET).gba
+	@gbafix $(TARGET).gba
+
+build-debug:
+	@$(CARGO) build
 	@$(LD) $(LDFLAGS) -specs=$(GBALIB_DIR)/gba.specs $(TARGET_DIR)/release/lib$(TARGET).a -o $(TARGET).elf
 	@$(CARGO) objcopy -- -O binary $(TARGET).elf $(TARGET).gba
 	@gbafix $(TARGET).gba
