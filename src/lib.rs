@@ -1,7 +1,22 @@
 #![no_std]
 #![feature(lang_items)]
+#![feature(start)]
+#![feature(asm)]
 
 mod base;
+
+#[start]
+#[no_mangle]
+pub fn _start() {
+    unsafe {
+        asm!(
+            "b main"
+        );
+        asm!(
+            ".fill 188, 1, 0"
+        )
+    }
+}
 
 #[no_mangle]
 pub fn main() -> ! {

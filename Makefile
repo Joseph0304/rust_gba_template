@@ -5,7 +5,7 @@ endif
 include $(DEVKITARM)/gba_rules
 
 export CARGO     := xargo
-export LD        := $(CC)
+export LD        := ld.lld
 
 TARGET     := $(notdir $(CURDIR))
 TARGET_DIR := $(CURDIR)/target/gba
@@ -26,13 +26,13 @@ usage:
 
 build:
 	@$(CARGO) build --release
-	@$(LD) $(LDFLAGS) -specs=$(GBALIB_DIR)/gba.specs $(TARGET_DIR)/release/lib$(TARGET).a -o $(TARGET).elf
+	@$(LD) -T linker.ld $(TARGET_DIR)/release/lib$(TARGET).a -o $(TARGET).elf
 	@$(CARGO) objcopy -- -O binary $(TARGET).elf $(TARGET).gba
 	@gbafix $(TARGET).gba
 
 build-debug:
 	@$(CARGO) build
-	@$(LD) $(LDFLAGS) -specs=$(GBALIB_DIR)/gba.specs $(TARGET_DIR)/release/lib$(TARGET).a -o $(TARGET).elf
+	@$(LD) -T linker.ld $(TARGET_DIR)/debug/lib$(TARGET).a -o $(TARGET).elf
 	@$(CARGO) objcopy -- -O binary $(TARGET).elf $(TARGET).gba
 	@gbafix $(TARGET).gba
 
