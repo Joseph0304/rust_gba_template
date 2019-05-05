@@ -25,18 +25,14 @@ usage:
 	@echo "make clean"
 
 build:
-	@$(CARGO) build --release
-	@$(LD) -T linker.ld $(TARGET_DIR)/release/lib$(TARGET).a -o $(TARGET).elf
-	@$(CARGO) objcopy -- -O binary $(TARGET).elf $(TARGET).gba
+	@$(CARGO) objcopy --bin $(TARGET) --release -- $(TARGET).gba
 	@gbafix $(TARGET).gba
 
 build-debug:
-	@$(CARGO) build
-	@$(LD) -T linker.ld $(TARGET_DIR)/debug/lib$(TARGET).a -o $(TARGET).elf
-	@$(CARGO) objcopy -- -O binary $(TARGET).elf $(TARGET).gba
+	@$(CARGO) objcopy --bin $(TARGET) -- $(TARGET).gba
 	@gbafix $(TARGET).gba
 
 clean:
 	@echo clean ...
 	@$(CARGO) clean
-	@rm -fr $(TARGET).elf $(TARGET).gba
+	@rm -fr $(TARGET).gba

@@ -1,3 +1,4 @@
+#![no_main]
 #![no_std]
 #![feature(lang_items)]
 #![feature(start)]
@@ -7,6 +8,7 @@ mod base;
 
 #[start]
 #[no_mangle]
+#[cfg(target_arch = "arm")]
 pub fn _start() {
     unsafe {
         asm!(
@@ -19,7 +21,7 @@ pub fn _start() {
 }
 
 #[no_mangle]
-pub fn main() -> ! {
+pub fn main() ->! {
     let _x = 42;
 
     loop {}

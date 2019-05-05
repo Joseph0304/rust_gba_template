@@ -13,6 +13,3 @@ lto = true
 [profile.release]
 panic = "abort"
 lto = true
-
-[lib]
-crate-type = ["staticlib"]
