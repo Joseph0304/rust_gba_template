@@ -25,11 +25,11 @@ usage:
 	@echo "make clean"
 
 build:
-	@$(CARGO) objcopy --bin $(TARGET) --release -- $(TARGET).gba
+	@$(CARGO) objcopy --bin $(TARGET) --release -- -O binary $(TARGET).gba
 	@gbafix $(TARGET).gba
 
 build-debug:
-	@$(CARGO) objcopy --bin $(TARGET) -- $(TARGET).gba
+	@$(CARGO) objcopy --bin $(TARGET) -- -O binary $(TARGET).gba
 	@gbafix $(TARGET).gba
 
 clean:

@@ -18,14 +18,14 @@ __irq_flags     = 0x03007ff8;
 
 SECTIONS {
   . = __text_start;
-  .crt0 : {
-    KEEP(*(.crt0))
-    . = ALIGN(4);
-  } >rom = 0xff
-
   .text  : {
+    *(.text)
   } >rom = 0xff
   __text_end = .;
+
+  .data : { *(.data) }
+  .bss : { *(.bss) }
+
   __exidx_start = .;
   .ARM.exidx   : { *(.ARM.exidx*) } >rom
   __exidx_end = .;
