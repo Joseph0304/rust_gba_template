@@ -26,11 +26,9 @@ usage:
 
 build:
 	@$(CARGO) objcopy --bin $(TARGET) --release -- -O binary $(TARGET).gba
-	@gbafix $(TARGET).gba
 
 build-debug:
 	@$(CARGO) objcopy --bin $(TARGET) -- -O binary $(TARGET).gba
-	@gbafix $(TARGET).gba
 
 clean:
 	@echo clean ...

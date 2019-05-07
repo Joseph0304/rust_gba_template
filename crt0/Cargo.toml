@@ -1,11 +1,10 @@
 [package]
-name = "rust_gba_template"
+name = "crt0"
 version = "0.1.0"
 authors = ["Joseph0304 <joseph0304.drdr@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-crt0 = { path = "crt0" }
 
 [profile.dev]
 panic = "abort"
