@@ -47,71 +47,7 @@ pub fn _start() {
             .word 0x07f8d421;
             "
         );
-        asm!( // Game Title, Uppercase Ascii, max 12 characters
-            "
-            .word 0
-            .word 0
-            .word 0
-            "
-        );
-        asm!( // Game Code, Uppercase Ascii, 4 characters
-            "
-            .word 0
-            "
-        );
-        asm!( // Maker code, Uppercase Ascii, 2 characters
-            "
-            .hword 0
-            "
-        );
-        asm!( // Fixed value, 1 Byte
-              // Must be 96h.
-            "
-            .byte 0x96
-            "
-        );
-        asm!( // Main unit code, 1 Byte
-            "
-            .byte 0
-            "
-        );
-        asm!( // Device type, 1 Byte
-              // Normally, this entry should be zero.
-            "
-            .byte 0;
-            "
-        );
-        asm!( // Reserved Area, 7 Bytes
-              // Reserved, zero filled.
-            "
-            .byte 0;
-            .byte 0;
-            .byte 0;
-            .byte 0;
-            .byte 0;
-            .byte 0;
-            .byte 0;
-            "
-        );
-        asm!( // Software version number
-              //Version number of the game. Usually zero.
-            "
-            .byte 0
-            "
-        );
-        asm!( // Complement check, 1 Byte
-              // Header checksum, cartridge won't work if incorrect. Calculate as such:
-              // chk=0:for i=0A0h to 0BCh:chk=chk-[i]:next:chk=(chk-19h) and 0FFh
-            "
-            .byte 0
-            "
-        );
-        asm!( // Reserved Area, 2 Bytes
-              // Reserved, zero filled.
-            "
-            .hword 0
-            "
-        );
+        include!(concat!(env!("OUT_DIR"), "/game_info.rs"));
     }
 }
 
