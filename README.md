@@ -7,5 +7,6 @@ You need install in advance
 
 ```sh
 $ rustup default nightly
+$ rustup component add rust-src
 $ make build
 ```
