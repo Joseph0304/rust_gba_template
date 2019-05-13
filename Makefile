@@ -1,15 +1,7 @@
-ifeq ($(strip $(DEVKITARM)),)
-$(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>devkitARM")
-endif
-
-include $(DEVKITARM)/gba_rules
-
 export CARGO     := xargo
 export LD        := ld.lld
 
 TARGET     := $(notdir $(CURDIR))
-TARGET_DIR := $(CURDIR)/target/gba
-GBALIB_DIR := $(DEVKITARM)/arm-none-eabi/lib
 
 .PHONY: usage build build-debug clean
 
