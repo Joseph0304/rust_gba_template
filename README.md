@@ -6,5 +6,6 @@ You need install in advance
 - [xargo](https://github.com/japaric/xargo)
 
 ```sh
+$ rustup default nightly
 $ make build
 ```
