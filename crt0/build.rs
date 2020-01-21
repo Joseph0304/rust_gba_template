@@ -88,7 +88,5 @@ fn main() {
     let s = s.as_str();
     let slice = &s[1..s.len()-1];
 
-    f.write_all(format!(r#"
-        asm!(".byte {}");
-    "#, slice).as_bytes()).unwrap();
+    f.write_all(format!(r#"asm!(".byte {}")"#, slice).as_bytes()).unwrap();
 }
